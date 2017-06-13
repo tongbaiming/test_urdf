@@ -1,0 +1,391 @@
+<robot name="test_robot">
+  <link name="link1">
+    <inertial>
+      <mass value="1.1"/>
+      <!-- [kg] -->
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0347563" ixy="0.0" ixz="0.0" iyy="0.0458929" iyz="0.0" izz="0.0977"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tbm/temp/test_catkin_ws/src/ardupilot_sitl_gazebo_plugin/ardupilot_sitl_gazebo_plugin/meshes/meshes_drones/erlecopter.dae" scale="1 1 1"/>
+        <!-- <box size="${body_width} ${body_width} ${body_height}"/> -->
+        <!-- [m] [m] [m] -->
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tbm/temp/test_catkin_ws/src/ardupilot_sitl_gazebo_plugin/ardupilot_sitl_gazebo_plugin/meshes/meshes_drones/erlecopter.dae" scale="1 1 1"/>
+        <!-- <box size="${body_width} ${body_width} ${body_height}"/> -->
+        <!-- [m] [m] [m] -->
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="link2">
+		<inertial>
+			<origin xyz="0.000305 0.000031 -0.023016" rpy="0 0 0" />
+			<mass value="0.639"/>
+			<inertia ixx="0.002221554" ixy="-0.000004287" ixz="0.000015556" iyy="0.001952311" iyz="0.000003778" izz="0.004017166"/>
+		</inertial>
+    <visual>
+			<!-- <origin xyz="0.000305 0.000031 -0.023016" rpy="0 0 0" /> -->
+      <geometry>
+        <mesh filename="file:///home/tbm/temp/test_models/models/guidance_2/meshes/untitled2.dae"/>
+      </geometry>
+    </visual>
+		<collision>
+			<geometry>
+				<mesh filename="file:///home/tbm/temp/test_models/models/guidance_2/meshes/untitled2.dae"/>
+			</geometry>
+		</collision>
+  </link>
+
+  <joint name="joint1" type="fixed">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 -0.0373" rpy="3.1415926 0 0" />
+  </joint>
+  <link name="camera_frame_1">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.0001"/>
+      <inertia ixx="0.0000001" ixy="0.0000001" ixz="0.0000001" iyy="0.0000001" iyz="0.0000001" izz="0.0000001"/>
+    </inertial>
+    <collision>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="camera_frame_2">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.0001"/>
+      <inertia ixx="0.0000001" ixy="0.0000001" ixz="0.0000001" iyy="0.0000001" iyz="0.0000001" izz="0.0000001"/>
+    </inertial>
+    <collision>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="camera_frame_3">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.0001"/>
+      <inertia ixx="0.0000001" ixy="0.0000001" ixz="0.0000001" iyy="0.0000001" iyz="0.0000001" izz="0.0000001"/>
+    </inertial>
+    <collision>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="camera_frame_4">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.0001"/>
+      <inertia ixx="0.0000001" ixy="0.0000001" ixz="0.0000001" iyy="0.0000001" iyz="0.0000001" izz="0.0000001"/>
+    </inertial>
+    <collision>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="camera_frame_5">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.0001"/>
+      <inertia ixx="0.0000001" ixy="0.0000001" ixz="0.0000001" iyy="0.0000001" iyz="0.0000001" izz="0.0000001"/>
+    </inertial>
+    <collision>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="link2_to_camera_frame_1" type="fixed">
+    <parent link="link2"/>
+    <child link="camera_frame_1"/>
+    <origin xyz="0.1035 0.0005 0.018" rpy="3.1415926 0 0"/>
+  </joint>
+  <joint name="link2_to_camera_frame_2" type="fixed">
+    <parent link="link2"/>
+    <child link="camera_frame_2"/>
+    <origin xyz="-0.1035 0.0005 0.018" rpy="3.1415926 0 3.1415926"/>
+  </joint>
+  <joint name="link2_to_camera_frame_3" type="fixed">
+    <parent link="link2"/>
+    <child link="camera_frame_3"/>
+    <origin xyz="0.0005 -0.104 0.018" rpy="3.1415926 0 -1.5707963"/>
+  </joint>
+  <joint name="link2_to_camera_frame_4" type="fixed">
+    <parent link="link2"/>
+    <child link="camera_frame_4"/>
+    <origin xyz="0.0005  0.104 0.018" rpy="3.1415926 0 1.5707963"/>
+  </joint>
+  <joint name="link2_to_camera_frame_5" type="fixed">
+    <parent link="link2"/>
+    <child link="camera_frame_5"/>
+    <origin xyz="-0.02 0.0005 0.0515" rpy="3.1415926 -1.5707963 3.1415926"/>
+  </joint>
+  <gazebo reference="camera_frame_1">
+    <sensor type="multicamera" name="stereo_camera_1">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>50.0</update_rate>
+      <camera name="left">
+        <pose>-0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <camera name="right">
+        <pose>0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <plugin name="stereo_camera_controller_1" filename="libgazebo_ros_multicamera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>multisense_sl/camera_1</cameraName>
+        <imageTopicName>image_raw_1</imageTopicName>
+        <cameraInfoTopicName>camera_info_1</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo reference="camera_frame_2">
+    <sensor type="multicamera" name="stereo_camera_2">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>50.0</update_rate>
+      <camera name="left">
+        <pose>-0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <camera name="right">
+        <pose>0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <plugin name="stereo_camera_controller_2" filename="libgazebo_ros_multicamera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>multisense_sl/camera_2</cameraName>
+        <imageTopicName>image_raw_2</imageTopicName>
+        <cameraInfoTopicName>camera_info_2</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+   <gazebo reference="camera_frame_3">
+    <sensor type="multicamera" name="stereo_camera_3">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>50.0</update_rate>
+      <camera name="left">
+        <pose>-0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <camera name="right">
+        <pose>0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <plugin name="stereo_camera_controller_3" filename="libgazebo_ros_multicamera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>multisense_sl/camera_3</cameraName>
+        <imageTopicName>image_raw_3</imageTopicName>
+        <cameraInfoTopicName>camera_info_3</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+   <gazebo reference="camera_frame_4">
+    <sensor type="multicamera" name="stereo_camera_4">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>50.0</update_rate>
+      <camera name="left">
+        <pose>-0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <camera name="right">
+        <pose>0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+    <plugin name="stereo_camera_controller_4" filename="libgazebo_ros_multicamera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>multisense_sl/camera_4</cameraName>
+        <imageTopicName>image_raw_4</imageTopicName>
+        <cameraInfoTopicName>camera_info_4</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+   <gazebo reference="camera_frame_5">
+    <sensor type="multicamera" name="stereo_camera_5">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>50.0</update_rate>
+      <camera name="left">
+        <pose>-0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <camera name="right">
+        <pose>0.075 0 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+        </image>
+        <clip>
+          <near>0.002</near>
+          <far>3000</far>
+        </clip>
+      </camera>
+      <plugin name="stereo_camera_controller_5" filename="libgazebo_ros_multicamera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>multisense_sl/camera_5</cameraName>
+        <imageTopicName>image_raw_5</imageTopicName>
+        <cameraInfoTopicName>camera_info_5</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+</robot>

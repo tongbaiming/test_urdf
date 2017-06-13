@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:include filename="/home/tbm/temp/test_urdf/test_conclusion_2/erlecopter_lidar_test_1.xacro" />
+	<xacro:include filename="/home/tbm/temp/test_urdf/test_conclusion_2/erlecopter_guidance_test_1.xacro" />
+	<xacro:macro name="erlecopter_guidance_lidar" params="instance erlecopter_base_link">
+		
+		<xacro:erlecopter_lidar instance="${instance}" erlecopter_base_link="${erlecopter_base_link}"/>
+		<xacro:erlecopter_guidance instance="${instance}" erlecopter_base_link="${erlecopter_base_link}"/>
+	</xacro:macro>
+</robot>

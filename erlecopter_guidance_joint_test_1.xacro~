@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:property name="PI" value="3.1415926" />
+	<xacro:property name="erlecopter_guidance_joint_origin_xyz" value="0 0 -0.0373">
+	<xacro:property name="erlecopter_guidance_joint_origin_rpy" value="${PI} 0 0">
+	<xacro:macro name="erlecopter_guidance_joint" params="instance parent_link child_link">
+		<joint name="erlecopter_guidance_joint_${instance}" type="fixed">
+			<origin xyz="${erlecopter_guidance_joint_origin_xyz}" rpy="${erlecopter_guidance_joint_origin_rpy}" />
+			<parent link="${parent_link}" />
+			<child link="${child_link}" />
+		</joint>
+	</xacro:macro>
+</robot>

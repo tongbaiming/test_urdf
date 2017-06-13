@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro" name="erlecopter_with_guidance">
+	<xacro:property name="instance" value="1" />
+	<xacro:property name="erlecopter_guidance_joint_test_path" value="file:///home/tbm/temp/test_urdf/erlecopter_guidance_joint_test_1.xacro" />
+	<xacro:property name="erlecopter_test_1_path" value="file:///home/tbm/temp/test_urdf/erlecopter_test_1.xacro" />
+	<xacro:property name="guidance_test_1_path" value="file:///home/tbm/temp/test_urdf/guidance_test_1.xacro" />
+	<xacro:include filename="/home/tbm/temp/test_urdf/erlecopter_guidance_joint_test_1.xacro" />
+	<xacro:include filename="/home/tbm/temp/test_urdf/erlecopter_test_1.xacro" />
+	<xacro:include filename="/home/tbm/temp/test_urdf/guidance_test_2.xacro" />
+	<xacro:erlecopter_base_link instance="${instance}" />
+	<xacro:guidance_link instance="${instance}" />
+	<xacro:erlecopter_guidance_joint instance="${instance}" parent_link="erlecopter_base_link_${instance}" child_link="guidance_link_${instance}"/>
+</robot>

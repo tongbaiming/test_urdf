@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:property name="PI" value="3.1415926" />
+	<xacro:property name="erlecopter_guidance_instance" value="1" />
+	<xacro:property name="erlecopter_guidance_joint_file" value="/home/tbm/temp/test_urdf/test_conclusion_1/erlecopter_guidance_joint_test_1.xacro" />
+	<xacro:property name="erlecopter_guidance_link_file" value="/home/tbm/temp/test_urdf/test_conclusion_1/erlecopter_guidance_link_test_2.xacro" />
+	<xacro:property name="erlecopter_guidance_joint_1_origin_xyz" value="0 0 -0.0373" />
+	<xacro:property name="erlecopter_guidance_joint_1_origin_rpy" value="${PI} 0 0" />
+	
+	<!--
+	<xacro:property name="erlecopter_guidance_joint_2_origin_xyz" value="0 0 0" />
+	<xacro:property name="erlecopter_guidance_joint_2_origin_rpy" value="0 0 0" />
+	-->
+	<xacro:include filename="/home/tbm/temp/test_urdf/test_conclusion_1/erlecopter_guidance_joint_test_1.xacro" />
+	<xacro:include filename="/home/tbm/temp/test_urdf/test_conclusion_1/erlecopter_guidance_link_test_2.xacro" />
+	<xacro:macro name="erlecopter_guidance" params="instance erlecopter_base_link">
+		<xacro:erlecopter_guidance_link instance="${instance}" />
+		<xacro:property name="instance" value="1" />
+		<xacro:unless value="${instance-1}">
+			<xacro:erlecopter_guidance_joint instance="${instance}"
+	 		parent_link="${erlecopter_base_link}"
+	 		child_link="guidance_link_${instance}"
+			joint_origin_xyz="${erlecopter_guidance_joint_1_origin_xyz}"
+			joint_origin_rpy="${erlecopter_guidance_joint_1_origin_rpy}"
+			/>
+		</xacro:unless>
+		<!-- 
+		<xacro:unless value="${instance-2}">
+			<xacro:erlecopter_guidance_joint instance="${instance}"
+	 		parent_link="${erlecopter_base_link}"
+	 		child_link="guidance_link_${instance}"
+			joint_origin_xyz="${erlecopter_guidance_joint_2_origin_xyz}"
+			joint_origin_rpy="${erlecopter_guidance_joint_2_origin_rpy}"
+			/>
+		</xacro:unless>
+		-->
+	</xacro:macro>
+</robot>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:property name="half_left_right" value="0.075" />
+	<xacro:property name="PI" value="3.1415926" />
+	<!-- reference to the origin of erlecopter -->
+	<xacro:property name="guidance_origin_xyz" value="0 0 -0.0373" />	
+	<xacro:property name="guidance_origin_rpy" value="3.1415926 0 0" />
+	<!-- reference to the origin of guidance model in inventor -->
+	<xacro:property name="guidance_gravity_center_xyz" value="0.000305 0.000031 -0.023016" />
+	<xacro:property name="guidance_gravity_center_rpy" value="0 0 0" />
+	<!-- reference to the gravity center -->
+	<xacro:property name="guidance_inertia_ixx" value="0.002221554" />
+	<xacro:property name="guidance_inertia_ixy" value="-0.000004287" />
+	<xacro:property name="guidance_inertia_ixz" value="0.000015556" />
+	<xacro:property name="guidance_inertia_iyy" value="0.001952311" />
+	<xacro:property name="guidance_inertia_iyz" value="0.000003778" />
+	<xacro:property name="guidance_inertia_izz" value="0.004017166" />
+	<xacro:property name="guidance_mass" value="0.639" />
+	<!-- reference to the origin of erlecopter -->
+	<xacro:property name="bar_1_left_camera_xyz" value="${0.1035-half_left_right} -0.0005 -0.0553" />
+	<xacro:property name="bar_1_left_camera_rpy" value="-0 -0 0" />
+	<xacro:property name="bar_1_right_camera_xyz" value="${0.1035+half_left_right} -0.0005 -0.0553" />
+	<xacro:property name="bar_1_right_camera_rpy" value="-0 -0 0" />
+  <xacro:property name="bar_2_left_camera_xyz" value="${-0.1035-half_left_right} -0.0005 -0.0553" />
+	<xacro:property name="bar_2_left_camera_rpy" value="-0 -0 ${-PI}" />
+	<xacro:property name="bar_2_right_camera_xyz" value="${-0.1035+half_left_right} -0.0005 -0.0553" />
+	<xacro:property name="bar_2_right_camera_rpy" value="-0 -0 ${-PI}" />
+	<xacro:property name="bar_3_left_camera_xyz" value="${0.0005-half_left_right} 0.104 -0.0553" />
+	<xacro:property name="bar_3_left_camera_rpy" value="-0 0 ${PI/2}" />
+	<xacro:property name="bar_3_right_camera_xyz" value="${0.0005+half_left_right} 0.104 -0.0553" />
+	<xacro:property name="bar_3_right_camera_rpy" value="-0 0 ${PI/2}" />
+	<xacro:property name="bar_4_left_camera_xyz" value="${0.0005-half_left_right} -0.104 -0.0553" />
+	<xacro:property name="bar_4_left_camera_rpy" value="-0 -0 ${-PI/2}" />
+	<xacro:property name="bar_4_right_camera_xyz" value="${0.0005+half_left_right} -0.104 -0.0553" />
+	<xacro:property name="bar_4_right_camera_rpy" value="-0 -0 ${-PI/2}" />
+	<xacro:property name="bar_5_left_camera_xyz" value="${-0.02-half_left_right} -0.0005 -0.0888" />
+	<xacro:property name="bar_5_left_camera_rpy" value="-2.03444 1.57079 1.10715" />
+	<xacro:property name="bar_5_right_camera_xyz" value="${-0.02+half_left_right} -0.0005 -0.0888" />
+	<xacro:property name="bar_5_right_camera_rpy" value="-2.03444 1.57079 1.10715" />
+	<xacro:property name="guidance_mesh_absolute_path" value="file:///home/tbm/temp/test_models/models/guidance_2/meshes/untitled2.dae" />
+	<xacro:macro name="guidance_link" param="instance">
+		<link name="guidance_link_${instance}">
+			<inertial>
+				<origin xyz="${guidance_gravity_center_xyz}" rpy="${guidance_gravity_center_rpy}" />
+				<mass value="${guidance_mass}" />
+				<inertia ixx="${guidance_inertia_ixx}" ixy="${guidance_inertia_ixy}" ixz="${guidance_inertia_ixz}" iyy="${guidance_inertia_iyy}" iyz="${guidance_inertia_iyz}"  izz="${guidance_inertia_izz}" />
+			</inertial>
+			<collision>
+				<geometry>
+					<mesh filename="${guidance_mesh_absolute_path}"/>
+				</geometry>
+			</collision>
+			<visual>
+				<geometry>
+					<mesh filename="${guidance_mesh_absolute_path}"/>
+				</geometry>
+			</visual>
+		</link>
+	</xacro:macro>
+</robot>

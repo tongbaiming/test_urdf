@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	
+	 <!-- <xacro:property name="erlecopter_lidar_joint_1_origin_xyz" value="-0.04 0 0.065" /> -->
+	<!-- <xacro:property name="erlecopter_lidar_joint_1_origin_xyz" value="-0.04 0 0.15" /> -->
+	<xacro:property name="erlecopter_lidar_joint_1_origin_xyz" value="0 0 0.1" />
+	
+	<xacro:property name="erlecopter_lidar_joint_1_origin_rpy" value="0.52359877559 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_1_axis_xyz" value="0 0.5 0.866025404" />
+	
+	  <!--
+	<xacro:property name="erlecopter_lidar_joint_1_origin_rpy" value="0 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_1_axis_xyz" value="0 0 1" />
+	-->
+	
+	<xacro:property name="erlecopter_lidar_joint_2_origin_xyz" value="0 0 0.18" />
+	<xacro:property name="erlecopter_lidar_joint_2_origin_rpy" value="-0.52359877559 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_2_axis_xyz" value="0 0.5 -0.866025404" />
+	<xacro:property name="erlecopter_lidar_joint_3_origin_xyz" value="0 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_3_origin_rpy" value="0 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_3_axis_xyz" value="0 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_4_origin_xyz" value="0 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_4_origin_rpy" value="0 0 0" />
+	<xacro:property name="erlecopter_lidar_joint_4_axis_xyz" value="0 0 0" />
+	
+	<xacro:property name="erlecopter_lidar_file_directory" value="/home/tbm/temp/test_urdf/test_conclusion_1/" />
+	<xacro:property name="erlecopter_lidar_joint_file_name" value="erlecopter_lidar_joint_test_1.xacro" />
+	<xacro:property name="erlecopter_lidar_link_file_name" value="erlecopter_lidar_link_test_1.xacro" />
+	
+	<xacro:include filename="/home/tbm/temp/test_urdf/test_conclusion_1/erlecopter_lidar_joint_test_1.xacro" />
+	<xacro:include filename="/home/tbm/temp/test_urdf/test_conclusion_1/erlecopter_lidar_link_test_1.xacro" />	
+	<xacro:macro name="erlecopter_lidar" params="instance erlecopter_base_link robot_namespace">
+		<xacro:erlecopter_lidar_link instance="${instance}"/>
+		<xacro:unless value="${instance-1}">
+			<xacro:erlecopter_lidar_joint instance="${instance}" 
+			parent_link="${erlecopter_base_link}"
+			child_link="lidar_link_${instance}"
+			joint_origin_xyz="${erlecopter_lidar_joint_1_origin_xyz}"
+			joint_origin_rpy="${erlecopter_lidar_joint_1_origin_rpy}"
+			joint_axis_xyz="${erlecopter_lidar_joint_1_axis_xyz}"
+			/>
+		</xacro:unless>
+		<xacro:unless value="${instance-2}">
+			<xacro:erlecopter_lidar_joint instance="${instance}" 
+			parent_link="${erlecopter_base_link}"
+			child_link="lidar_link_${instance}"
+			joint_origin_xyz="${erlecopter_lidar_joint_2_origin_xyz}"
+			joint_origin_rpy="${erlecopter_lidar_joint_2_origin_rpy}"
+			joint_axis_xyz="${erlecopter_lidar_joint_2_axis_xyz}"
+			/>
+		</xacro:unless>
+		<xacro:unless value="${instance-3}">
+			<xacro:erlecopter_lidar_joint instance="${instance}" 
+			parent_link="${erlecopter_base_link}"
+			child_link="lidar_link_${instance}"
+			joint_origin_xyz="${erlecopter_lidar_joint_3_origin_xyz}"
+			joint_origin_rpy="${erlecopter_lidar_joint_3_origin_rpy}"
+			joint_axis_xyz="${erlecopter_lidar_joint_3_axis_xyz}"
+			/>
+		</xacro:unless>
+		<xacro:unless value="${instance-4}">
+			<xacro:erlecopter_lidar_joint instance="${instance}" 
+			parent_link="${erlecopter_base_link}"
+			child_link="lidar_link_${instance}"
+			joint_origin_xyz="${erlecopter_lidar_joint_4_origin_xyz}"
+			joint_origin_rpy="${erlecopter_lidar_joint_4_origin_rpy}"
+			joint_axis_xyz="${erlecopter_lidar_joint_4_axis_xyz}"
+			/>
+		</xacro:unless>
+	</xacro:macro>
+</robot>

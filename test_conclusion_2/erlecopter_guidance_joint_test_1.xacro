@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:macro name="erlecopter_guidance_joint" params="instance parent_link child_link joint_origin_xyz joint_origin_rpy">
+		<joint name="erlecopter_guidance_joint_${instance}" type="fixed">
+			<origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}" />
+			<parent link="${parent_link}" />
+			<child link="${child_link}" />
+		</joint>
+	</xacro:macro>
+</robot>

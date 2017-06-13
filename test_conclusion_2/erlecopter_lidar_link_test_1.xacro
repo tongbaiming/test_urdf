@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+		<!-- fake param-->
+	<xacro:property name="lidar_inertia_ixx" value="0.000044017" />
+	<xacro:property name="lidar_inertia_ixy" value="0" />
+	<xacro:property name="lidar_inertia_ixz" value="0" />
+	<xacro:property name="lidar_inertia_iyy" value="0.000044017" />
+	<xacro:property name="lidar_inertia_iyz" value="0" />
+	<xacro:property name="lidar_inertia_izz" value="0.000070715" />
+	<xacro:property name="lidar_mass" value="0.15" />
+	<xacro:macro name="erlecopter_lidar_link" params="instance">
+		<link name="${namespace}/lidar_link_${instance}">
+			<inertial>
+				<!-- <mass value="0.1"/> -->
+				<!-- <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/> -->
+				<!-- <mass value="0.00001"/> -->
+				<!-- <inertia ixx="0.000000001" ixy="0.000000001" ixz="0.000000001" iyy="0.0000000001" iyz="0.000000001" izz="0.000000001"/> -->
+				<mass value="${lidar_mass}" />
+				<inertia ixx="${lidar_inertia_ixx}" ixy="${lidar_inertia_ixy}" ixz="${lidar_inertia_ixz}" iyy="${lidar_inertia_iyy}" iyz="${lidar_inertia_iyz}" izz="${lidar_inertia_izz}"/>
+			</inertial>
+			<collision>
+				<geometry>
+					<cylinder length="0.03" radius="0.035"/>
+				</geometry>
+			</collision>
+			<visual>
+				<geometry>
+					<cylinder length="0.03" radius="0.035"/>
+				</geometry>
+			</visual>
+		</link>
+		<gazebo reference="${namespace}/lidar_link_${instance}">
+			<sensor type="ray" name="self_made_lidar">
+				<always_on>true</always_on>			
+				<visualize>true</visualize>
+				<update_rate>40</update_rate>
+				<ray>
+					<scan>
+						<horizontal>
+							<samples>720</samples>
+							<resolution>1</resolution>
+							<min_angle>0</min_angle>
+							<max_angle>1.5707963</max_angle>
+						</horizontal>
+					</scan>
+					<range>
+						<min>0.10</min>
+						<max>10.0</max>
+						<resolution>0.01</resolution>
+					</range>
+				</ray>
+				<plugin name="self_made_lidar_controller_${instance}" filename="libgazebo_ros_laser.so">
+					<robotNamespace>${namespace}</robotNamespace>
+					<topicName>laser/scan/${instance}</topicName>
+					<frameName>${namespace}/lidar_link_${instance}</frameName>
+				</plugin>
+			</sensor>
+		</gazebo>
+	</xacro:macro>
+</robot>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:property name="half_left_right" value="0.076" />
+	<xacro:property name="PI" value="3.1415926" />
+	<!-- reference to the origin of erlecopter -->
+	<xacro:property name="guidance_origin_x" value="0" />
+	<xacro:property name="guidance_origin_y" value="0" />
+	<xacro:property name="guidance_origin_z" value="-0.0373" />
+	<xacro:property name="guidance_origin_r" value="${PI}" />
+	<xacro:property name="guidance_origin_p" value="0" />
+	<xacro:property name="guidance_origin_y" value="0" />
+	<xacro:property name="guidance_origin_xyz" value="${guidance_origin_x} ${guidance_origin_y} ${guidance_origin_z}" />	
+	<xacro:property name="guidance_origin_rpy" value="${guidance_origin_r} ${guidance_origin_p} ${guidance_origin_y}" />
+	<!-- reference to the origin of guidance model in inventor -->
+	<xacro:property name="guidance_gravity_center_xyz" value="0.000305 0.000031 -0.023016" />
+	<xacro:property name="guidance_gravity_center_rpy" value="0 0 0" />
+	<!-- reference to the gravity center -->
+	<xacro:property name="guidance_inertia_ixx" value="0.002221554" />
+	<xacro:property name="guidance_inertia_ixy" value="-0.000004287" />
+	<xacro:property name="guidance_inertia_ixz" value="0.000015556" />
+	<xacro:property name="guidance_inertia_iyy" value="0.001952311" />
+	<xacro:property name="guidance_inertia_iyz" value="0.000003778" />
+	<xacro:property name="guidance_inertia_izz" value="0.004017166" />
+	<xacro:property name="guidance_mass" value="0.639" />
+	<!-- reference to the origin of erlecopter -->
+	<xacro:property name="bar_1_left_camera_xyz" value="0.1035 ${-0.0005-half_left_right} -0.0553" />
+	<xacro:property name="bar_1_left_camera_rpy" value="${PI} -0 0" />
+	<xacro:property name="bar_1_right_camera_xyz" value="0.1035 ${-0.0005+half_left_right} -0.0553" />
+	<xacro:property name="bar_1_right_camera_rpy" value="${PI} -0 0" />
+  <xacro:property name="bar_2_left_camera_xyz" value="-0.1035 ${-0.0005-half_left_right} -0.0553" />
+	<xacro:property name="bar_2_left_camera_rpy" value="${PI} -0 ${-PI}" />
+	<xacro:property name="bar_2_right_camera_xyz" value="-0.1035 ${-0.0005+half_left_right} -0.0553" />
+	<xacro:property name="bar_2_right_camera_rpy" value="${PI} -0 ${-PI}" />
+	<xacro:property name="bar_3_left_camera_xyz" value="0.0005 ${0.104-half_left_right} -0.0553" />
+	<xacro:property name="bar_3_left_camera_rpy" value="${PI} 0 ${PI/2}" />
+	<xacro:property name="bar_3_right_camera_xyz" value="0.0005 ${0.104+half_left_right} -0.0553" />
+	<xacro:property name="bar_3_right_camera_rpy" value="${PI} 0 ${PI/2}" />
+	<xacro:property name="bar_4_left_camera_xyz" value="0.0005 ${-0.104-half_left_right} -0.0553" />
+	<xacro:property name="bar_4_left_camera_rpy" value="${PI} -0 ${-PI/2}" />
+	<xacro:property name="bar_4_right_camera_xyz" value="0.0005 ${-0.104+half_left_right} -0.0553" />
+	<xacro:property name="bar_4_right_camera_rpy" value="${PI} -0 ${-PI/2}" />
+	<!---0.02 ${-0.0005-half_left_right} -0.0888 ${PI} ${PI} 0 -0.02 ${-0.0005+half_left_right} -0.0888 {PI} ${PI} 0-->
+	<xacro:property name="bar_5_left_camera_xyz" value="-0.020 ${half_left_right-0.0005} ${0.0515-guidance_origin_z}" />
+	<xacro:property name="bar_5_left_camera_rpy" value="${PI} ${-PI/2} 0" />
+	<xacro:property name="bar_5_right_camera_xyz" value="-0.020 ${half_left_right+0.0005} ${0.0515-guidance_origin_z}" />
+	<xacro:property name="bar_5_right_camera_rpy" value="${PI} ${-PI/2} 0" />
+	<xacro:property name="guidance_mesh_absolute_path" value="file:///home/tbm/temp/test_models/models/guidance_2/meshes/untitled2.dae" />
+	<xacro:property name="camera_update_rate" value="50.0" />
+	<xacro:property name="camera_horizontal_fov" value="1.3962634" />
+	<xacro:property name="camera_image_width" value="800" />
+	<xacro:property name="camera_image_height" value="800" />
+	<xacro:property name="camera_clip_near" value="0.002" />
+	<xacro:property name="camera_clip_far" value="3000" />
+	<xacro:macro name="stereo_camera" params="number *left_pose *right_pose">
+		<sensor name="stereo_camera_${number}" type="multicamera">
+			<update_rate>${camera_update_rate}</update_rate>
+			<camera name="left">
+				<xacro:insert_block name="left_pose" />
+				<horizontal_fov>${camera_horizontal_fov}</horizontal_fov>
+				<image>
+					<width>${camera_image_width}</width>
+					<height>${camera_image_height}</height>
+				</image>
+				<clip>
+					<near>${camera_clip_near}</near>
+					<far>${camera_clip_far}</far>
+				</clip>
+			</camera>
+			<camera name="right">
+				<xacro:insert_block name="right_pose" />
+				<horizontal_fov>${camera_horizontal_fov}</horizontal_fov>
+				<image>
+					<width>${camera_image_width}</width>
+					<height>${camera_image_height}</height>
+				</image>
+				<clip>
+					<near>${camera_clip_near}</near>
+					<far>${camera_clip_far}</far>
+				</clip>
+			</camera>
+			<plugin name="stereo_camera_controller_${number}" filename="libgazebo_ros_multicamera.so">
+				<alwaysOn>true</alwaysOn>
+				<updateRate>0.0</updateRate>
+      	<cameraName>multisense_sl/camera_${number}</cameraName>
+      	<imageTopicName>image_raw_${number}</imageTopicName>
+      	<cameraInfoTopicName>camera_info_${number}</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+			</plugin>
+		</sensor>
+	</xacro:macro>
+	<xacro:macro name="guidance_link" params="instance">
+		<link name="guidance_link_${instance}">
+			<inertial>
+				<origin xyz="${guidance_gravity_center_xyz}" rpy="${guidance_gravity_center_rpy}" />
+				<mass value="${guidance_mass}" />
+				<inertia ixx="${guidance_inertia_ixx}" ixy="${guidance_inertia_ixy}" ixz="${guidance_inertia_ixz}" iyy="${guidance_inertia_iyy}" iyz="${guidance_inertia_iyz}"  izz="${guidance_inertia_izz}" />
+			</inertial>
+			<collision>
+				<geometry>
+					<mesh filename="${guidance_mesh_absolute_path}"/>
+				</geometry>
+			</collision>
+			<visual>
+				<geometry>
+					<mesh filename="${guidance_mesh_absolute_path}"/>
+				</geometry>
+			</visual>
+		</link>
+		<gazebo reference="guidance_link_${instance}">
+			<xacro:stereo_camera number="1">
+				<pose>${bar_1_left_camera_xyz} ${bar_1_left_camera_rpy}</pose>
+				<pose>${bar_1_right_camera_xyz} ${bar_1_right_camera_rpy}</pose>
+			</xacro:stereo_camera>
+			<xacro:stereo_camera number="2">
+				<pose>${bar_2_left_camera_xyz} ${bar_2_left_camera_rpy}</pose>
+				<pose>${bar_2_right_camera_xyz} ${bar_2_right_camera_rpy}</pose>
+			</xacro:stereo_camera>
+			<xacro:stereo_camera number="3">
+				<pose>${bar_3_left_camera_xyz} ${bar_3_left_camera_rpy}</pose>
+				<pose>${bar_3_right_camera_xyz} ${bar_3_right_camera_rpy}</pose>
+			</xacro:stereo_camera>
+			<xacro:stereo_camera number="4">
+				<pose>${bar_4_left_camera_xyz} ${bar_4_left_camera_rpy}</pose>
+				<pose>${bar_4_right_camera_xyz} ${bar_4_right_camera_rpy}</pose>
+			</xacro:stereo_camera>
+			<xacro:stereo_camera number="5">
+				<pose>${bar_5_left_camera_xyz} ${bar_5_left_camera_rpy}</pose>
+				<pose>${bar_5_right_camera_xyz} ${bar_5_right_camera_rpy}</pose>
+			</xacro:stereo_camera>
+		</gazebo>
+	</xacro:macro>
+</robot>

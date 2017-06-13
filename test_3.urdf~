@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="ff">
+	<link name="world"/>
+	<link name="test2">
+		<inertial>
+			<mass value="0.001" />
+			<inertia ixx="0.000001" ixy="0.000001" ixz="0.000001" iyy="0.000001" iyz="0.000001" izz="0.000001" />
+		</inertial>
+		<collision>
+			<geometry>
+				<cylinder length="1" radius="1" />
+			</geometry>
+		</collision>
+		<visual>
+			<geometry>
+				<cylinder length="1" radius="1" />
+			</geometry>
+			<material name="blue">
+				<color rgba="0 0 .8 1"/>
+			</material>
+		</visual>
+	</link>
+	<joint name="test_joint_2" type="fixed">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<parent link="world" />
+		<child link="test2" />
+	</joint>
+</robot>

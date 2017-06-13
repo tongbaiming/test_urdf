@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro">
+	<xacro:property name="PI" value="3.1415926" />
+	<xacro:macro name="erlecopter_lidar_joint" params="instance parent_link child_link joint_origin_xyz joint_origin_rpy joint_axis_xyz">
+		<joint name="erlecopter_lidar_joint_${instance}" type="continuous">
+			<origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}" />
+			<parent link="${parent_link}" />
+			<child link="${child_link}" />
+			<axis xyz="${joint_axis_xyz}" />
+		</joint>
+		
+		<gazebo>
+			<plugin name="lidar_test_plugin_${instance}" filename="liblidar_test_plugin_2.so">
+				<jointName>erlecopter_lidar_joint_${instance}</jointName>
+				<velocity>10.0</velocity>
+			</plugin>
+		</gazebo>
+		
+	</xacro:macro>
+</robot>
