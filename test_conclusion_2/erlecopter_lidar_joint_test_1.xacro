@@ -13,7 +13,9 @@
 		<gazebo>
 			<plugin name="lidar_test_plugin_${instance}" filename="liblidar_test_plugin_3.so">
 				<jointName>${namespace}/erlecopter_lidar_joint_${instance}</jointName>
-				<velocity>6.283185307</velocity>
+				 <!-- <velocity>6.283185307</velocity> -->
+				<velocity>12.566370614</velocity>
+
 			</plugin>
 		</gazebo>
 		

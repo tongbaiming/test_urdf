@@ -9,7 +9,7 @@
 	<xacro:property name="lidar_inertia_izz" value="0.000070715" />
 	<xacro:property name="lidar_mass" value="0.15" />
 	<xacro:macro name="erlecopter_lidar_link" params="instance">
-		<link name="lidar_link_${instance}">
+		<link name="${namespace}/lidar_link_${instance}">
 			<inertial>
 				<!-- <mass value="0.1"/> -->
 				<!-- <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/> -->
@@ -29,7 +29,7 @@
 				</geometry>
 			</visual>
 		</link>
-		<gazebo reference="lidar_link_${instance}">
+		<gazebo reference="${namespace}/lidar_link_${instance}">
 			<sensor type="ray" name="self_made_lidar">
 				<always_on>true</always_on>			
 				<visualize>true</visualize>
@@ -52,7 +52,7 @@
 				<plugin name="self_made_lidar_controller_${instance}" filename="libgazebo_ros_laser.so">
 					<robotNamespace>${namespace}</robotNamespace>
 					<topicName>laser/scan/${instance}</topicName>
-					<frameName>lidar_link_${instance}</frameName>
+					<frameName>${namespace}/lidar_link_${instance}</frameName>
 				</plugin>
 			</sensor>
 		</gazebo>

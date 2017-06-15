@@ -33,7 +33,7 @@
 			<sensor type="ray" name="self_made_lidar">
 				<always_on>true</always_on>			
 				<visualize>true</visualize>
-				<update_rate>40</update_rate>
+				<update_rate>400</update_rate>
 				<ray>
 					<scan>
 						<horizontal>
